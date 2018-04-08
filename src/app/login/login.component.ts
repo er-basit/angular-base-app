@@ -3,11 +3,11 @@ import { AuthenticationService } from '../security/authentication.service';
 import { TokenService } from '../security/token.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
-import { AppAlertService } from '../app-alert/service/app-alert.service';
 import { APP_CONSTANTS } from '../constants/app.constants';
 import { AppLoaderService } from '../app-loader/service/app-loader.service';
 import { AuthorizationService } from '../security/authorization.service';
 import { ErrorService } from '../error-handling/error.service';
+import { AppNotificationService } from '../app-notification/app-notitication.service';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +41,6 @@ export class LoginComponent implements OnDestroy {
       private authorizationService: AuthorizationService,
     private tokenService: TokenService,
     private router: Router,
-    private alertService: AppAlertService,
     private loader: AppLoaderService,
     private errorService: ErrorService) {
 

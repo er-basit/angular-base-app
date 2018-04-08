@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HTTP_STATUS } from '../constants/error-status.constants';
 import { TokenService } from '../security/token.service';
 import { Router } from '@angular/router';
+import { AppNotificationService } from '../app-notification/app-notitication.service';
 
 /**
  * Can be used to handle all errors and show alert notification
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class ErrorService {
 
   constructor(private loaderService: AppLoaderService,
-    private alertService: AppAlertService,
+    private alertService: AppNotificationService,
     private tokenService: TokenService,
     private router: Router) {
   }
@@ -37,7 +38,7 @@ export class ErrorService {
       // Server or connection error happened
       if (!navigator.onLine) {
         // Handle offline error
-        this.alertService.alertError(['No Internet Connection']);
+        this.alertService.notifyError(['No Internet Connection'], 'growl');
       } else {
         if (error.status === HTTP_STATUS.NOT_AUTHENTICATED) {
           this.tokenService.removeToken();
@@ -48,9 +49,9 @@ export class ErrorService {
           * Show an error alert
           */
         if (error['errors']) {
-          this.alertService.alertError(MessageResolver.resolveErrorMessages(error['errors']));
+          this.alertService.notifyError(MessageResolver.resolveErrorMessages(error['errors']), 'growl');
         } else {
-          this.alertService.alertError([`${error.status} - ${error.message}`]);
+          this.alertService.notifyError([`${error.status} - ${error.message}`], 'growl');
         }
       }
     } else {

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { AppAlertService } from '../app-alert/service/app-alert.service';
 import { TestService } from '../test.service';
 import { AppLoaderService } from '../app-loader/service/app-loader.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../security/token.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from '../error-handling/error.service';
+import { AppNotificationService } from '../app-notification/app-notitication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +16,7 @@ export class DashboardComponent {
 
   testData: any;
 
-  constructor(private alertService: AppAlertService,
+  constructor(private notificationService: AppNotificationService,
     private testService: TestService,
     private loader: AppLoaderService,
     private router: Router,
@@ -41,7 +41,7 @@ export class DashboardComponent {
    * Show alert message when show alert button is clicked
    */
   showAlert() {
-    this.alertService.alertSuccess(['It was successfull', 'I am coming home']);
+    this.notificationService.notifySuccess(['It was successfull', 'I am coming home'], 'alert');
   }
 
   /**

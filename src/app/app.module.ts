@@ -15,6 +15,7 @@ import { AppHttpInterceptor } from './security/app-http.interceptor';
 import { AppErrorHandler } from './error-handling/app-error.handler';
 import { ErrorModule } from './error-handling/error.module';
 import { ErrorRouterModule } from './error-handling/error-router.module';
+import { AppNotificationModule } from './app-notification/app-notification.module';
 
 /* export function tokenGetter() {
   const token = localStorage.getItem('access_token');
@@ -32,7 +33,7 @@ import { ErrorRouterModule } from './error-handling/error-router.module';
     AppRoutingModule,
     SecurityModule,
     HttpClientModule,
-    AppAlertModule,
+    AppNotificationModule,
     AppLoaderModule,
     ErrorModule,
     ErrorRouterModule
